@@ -4,13 +4,24 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+if (process.env.NODE_ENV == ! 'development') {
 
-ReactDOM.render(
-  <React.StrictMode>
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+else {
+
+  ReactDOM.render(
+
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    ,
+    document.getElementById('root')
+  );
+}
 
 
 
