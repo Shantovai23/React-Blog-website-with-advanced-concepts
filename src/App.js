@@ -2,45 +2,52 @@
 import './App.css';
 import React from 'react'
 import Headers from './components/Headers.jsx'
-import {newsCategory} from './news'
+import News, {newsCategory} from './news'
 import NewsList from './components/NewsList.jsx'
 import Pagination from './components/pagination.jsx'
 import Result from './components/result.jsx'
 import Loading from './components/loading.jsx'
-import axios from 'axios'
 
 
 
 
+const news=new News(newsCategory.sports)
 class App extends React.Component {
   state={
-     news:[]
+     data:{},
+     isLoading:true
   }
 
+  
 
   componentDidMount(){
-       const url=`${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=technology`
-       axios.get(url)
-       .then(response=>{
-         this.setState({news:response.data.articles})
-       })
-       .catch(e=>{
-         console.log(e);
-       })
+      news.getNews()
+      .then(data=>{
+        this.setState({data,isLoading:false})
+      })
+      .catch(e=>{
+        console.log(e);
+        alert('something went Wrong')
+        this.setState({isLoading:false})
+      })
+      
   }
 
-
-
+  
  render(){
   return(
     <div className='container'>
       <div className='row'>
         <div className='col-sm-8 offset-md-1'>
-           <Headers category={newsCategory.technology}/>
+           <Headers category={this.state.category} changeCategory={this.changeCategory}/>
            <Result/>
-           <NewsList news={this.state.news} />
+           {this.state.isLoading?(
+            <Loading/>
+           ):(
+            <NewsList news={this.state.data.article} />
+           )}
            <Pagination/>
-           <Loading/>
+         
          
         </div>
       </div>
