@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { newsCategory } from '../news'
 
+
 class Headers extends Component {
     state = {
         searchTerm: ''
@@ -11,16 +12,19 @@ class Headers extends Component {
     }
 
     handlekeypress = (e) => {
-        //ToDo
+        if(e.key=="Enter"){
+            this.props.search(this.state.searchTerm)
+        }
     }
 
     render() {
         const { category,changeCategory } = this.props
         return (
             <div className='my-4'>
-                <h1 className='mb-4' style={{ fontWeight: '300' }}>
-                    Breaking News
+                <h1 className='mb-4' style={{ fontWeight: '400' }}>
+                    World Wide News
                 </h1>
+               
 
                 <input
                     type='search'

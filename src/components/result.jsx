@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Result=()=>{
+const Result=({totalResults,currentPage,totalPage})=>{
+  
     return(
         <div className='d-flex'>
-            <p className='text-black-50'>About {0} results found</p>
-            <p className='text-black-50 ml-auto'> {1} page of {100} </p>
+            <p className='text-black-50'>About {totalResults} results found</p>
+            <p className='text-black-50 ml-auto'> {currentPage} page of {totalPage} </p>
         </div>
     )
 }

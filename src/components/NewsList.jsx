@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 
 function getDateString(dateTimeStr) {
-    return new Date(dateTimeStr).toDateString
+    return new Date(dateTimeStr).toDateString()
 }
 const NewsItem = ({ item }) => {
   
@@ -23,7 +23,7 @@ const NewsItem = ({ item }) => {
         <div className='mt-2 d-flex align-items-center'>
             <small>
                 <strong>
-                    Published At {getDateString(item.publishedAt)}
+                    Published at {getDateString(item.publishedAt)}
                 </strong>
             </small>
             <div style={{ padding: '0.25rem 0.5rem', background: '#ededed', color: '#424242', borderRadius: '0.25rem', display: 'inline-block' }} className="ml-auto">
